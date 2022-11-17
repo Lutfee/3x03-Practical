@@ -1,23 +1,9 @@
-version: '3'
-
+version: '3.9'
 services:
-  jenkins:
-    container_name: jenkins
-    build: ./jenkins
+  apache:
+    image: httpd:latest
+    container_name: my-apache-app
     ports:
-      - '8080:8080'
-      - '443:8443'
-      - '50000:50000'
+    - '80:80'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./jenkins_home:/var/jenkins_home
-  
-  webapp:
-    container_name: webapp
-    build: ./webapp
-    ports:
-      - "80:80"
-
-volumes:
-  jenkins_data:
-    driver: local
+    - ./website:/usr/local/apache2/app
